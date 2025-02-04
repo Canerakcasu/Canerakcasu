@@ -21,6 +21,6 @@
 
 <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=canerakcasu&" alt="canerakcasu" /></p>
 
+![Snake animation](https://Canerakcasu.github.io/Canerakcasu/github-snake.svg)
 
-![Snake animation](https://github.com/Canerakcasu/Canerakcasu/blob/output/github-contribution-grid-snake.gif)
 
