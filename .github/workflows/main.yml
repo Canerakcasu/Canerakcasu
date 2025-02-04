@@ -1,43 +1,34 @@
-# GitHub Action for generating a contribution graph with a snake eating your contributions.
-
 name: Generate Snake
-
-# Controls when the action will run. This action runs every 6 hours.
+permissions: 
+  contents: write
 
 on:
   schedule:
-      # every 6 hours
+    # Runs every 6 hours
     - cron: "0 */6 * * *"
-
-# This command allows us to run the Action automatically from the Actions tab.
   workflow_dispatch:
 
-# The sequence of runs in this workflow:
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Checkout repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    # Checks repo under $GITHUB_WORKSHOP, so your job can access it
-      - uses: actions/checkout@v2
-
-    # Generates the snake  
-      - uses: Platane/snk@master
-        id: snake-gif
+      # Generate the snake graph
+      - name: Generate Snake Contribution Graph
+        uses: Platane/snk/svg-only@v3
         with:
-          github_user_name: Canerakcasu
-          # these next 2 lines generate the files on a branch called "output". This keeps the main branch from cluttering up.
-          gif_out_path: dist/github-contribution-grid-snake.gif
-          svg_out_path: dist/github-contribution-grid-snake.svg
+          github_user_name: Canerakcasu  # Set your GitHub username
+          outputs: dist/github-snake.svg
 
-     # show the status of the build. Makes it easier for debugging (if there's any issues).
-      - run: git status
+      # Show git status (for debugging)
+      - name: Check Git Status
+        run: git status
 
-      # Push the changes
+      # Commit and push the generated files
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
@@ -45,10 +36,11 @@ jobs:
           branch: master
           force: true
 
-      - uses: crazy-max/ghaction-github-pages@v2.1.3
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v3
         with:
-          # the output branch we mentioned above
-          target_branch: output
+          target_branch: output  # The output branch to store the snake graph
           build_dir: dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
