@@ -19,7 +19,6 @@
 
 <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=canerakcasu&show_icons=true&locale=en" alt="canerakcasu" /></p>
 
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=canerakcasu&" alt="canerakcasu" /></p>
 
 ![Snake animation](https://Canerakcasu.github.io/Canerakcasu/github-snake.svg)
 
